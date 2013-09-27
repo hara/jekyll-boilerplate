@@ -194,7 +194,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
-      'connect:server:keepalive',
+      'connect:server',
       'watch'
     ]);
   });
