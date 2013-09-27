@@ -1,0 +1,15 @@
+name:          jekyll-boilerplate
+description:   Jekyll Boilerplate with Grunt
+
+exclude:
+  - img
+  - css
+  - js
+  - fonts
+
+pygments: true
+
+markdown: redcarpet
+
+safe:      true
+lsi:       false
