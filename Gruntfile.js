@@ -107,6 +107,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
+          config: '_config.yml,_config.build.yml',
           dest: 'dist'
         }
       },
