@@ -41,6 +41,7 @@ module.exports = function (grunt) {
           open: true,
           base: [
             '.tmp',
+            '.jekyll',
             'app'
           ]
         }
@@ -58,7 +59,8 @@ module.exports = function (grunt) {
         ]
       },
       server: [
-        '.tmp'
+        '.tmp',
+        '.jekyll'
       ]
     },
 
@@ -100,7 +102,7 @@ module.exports = function (grunt) {
       },
       server: {
         options: {
-          dest: '.tmp'
+          dest: '.jekyll'
         }
       },
       dist: {
