@@ -4,21 +4,28 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
   require('load-grunt-tasks')(grunt);
 
+  var paths = {
+    app: 'app',
+    dist: 'dist'
+  };
+
   grunt.initConfig({
+
+    paths: paths,
 
     // grunt-contrib-watch
     watch: {
       compass: {
         files: [
-          'app/_scss/**/*.{sass,scss}'
+          '<%= paths.app %>/_scss/**/*.{sass,scss}'
         ],
         tasks: ['compass:server']
       },
       jekyll: {
         files: [
-          'app/**/*.{html,yml,md,mkd,markdown}',
+          '<%= paths.app %>/**/*.{html,yml,md,mkd,markdown}',
           '_config.yml',
-          '!app/_bower_components'
+          '!<%= paths.app %>/_bower_components'
         ],
         tasks: ['jekyll:server']
       }
@@ -33,7 +40,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           open: true,
-          base: ['dist']
+          base: ['<%= paths.dist %>']
         }
       },
       server: {
@@ -42,7 +49,7 @@ module.exports = function (grunt) {
           base: [
             '.tmp',
             '.jekyll',
-            'app'
+            '<%= paths.app %>'
           ]
         }
       }
@@ -54,8 +61,8 @@ module.exports = function (grunt) {
         dot: true,
         src: [
           '.tmp',
-          'dist/*',
-          '!dist/.git*'
+          '<%= paths.dist %>/*',
+          '!<%= paths.dist %>/.git*'
         ]
       },
       server: [
@@ -68,7 +75,7 @@ module.exports = function (grunt) {
     compass: {
       options: {
         bundleExec: true,
-        sassDir: 'app/_scss',
+        sassDir: '<%= paths.app %>/_scss',
         cssDir: '.tmp/css'
       },
       dist: {},
@@ -85,9 +92,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'app',
+            cwd: '<%= paths.app %>',
             src: ['fonts/**/*', 'img/**/*'],
-            dest: 'dist/'
+            dest: '<%= paths.dist %>/'
           }
         ]
       }
@@ -98,7 +105,7 @@ module.exports = function (grunt) {
       options: {
         bundleExec: true,
         config: '_config.yml',
-        src: 'app'
+        src: '<%= paths.app %>'
       },
       server: {
         options: {
@@ -108,7 +115,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           config: '_config.yml,_config.build.yml',
-          dest: 'dist'
+          dest: '<%= paths.dist %>'
         }
       },
       check: {
@@ -123,7 +130,7 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      check: ['Gruntfile.js', 'app/js/**/*.js']
+      check: ['Gruntfile.js', '<%= paths.app %>/js/**/*.js']
     },
 
     // grunt-rev
@@ -131,10 +138,10 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            'dist/js/**/*.js',
-            'dist/css/**/*.css',
-            'dist/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
-            'dist/fonts/**/*.{eot,otf,svg,svgz,ttf,woff}'
+            '<%= paths.dist %>/js/**/*.js',
+            '<%= paths.dist %>/css/**/*.css',
+            '<%= paths.dist %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
+            '<%= paths.dist %>/fonts/**/*.{eot,otf,svg,svgz,ttf,woff}'
           ]
         }
       }
@@ -142,17 +149,17 @@ module.exports = function (grunt) {
 
     // grunt-usemin
     useminPrepare: {
-      html: 'app/index.html',
+      html: '<%= paths.app %>/index.html',
       options: {
-        dest: 'dist'
+        dest: '<%= paths.dist %>'
       }
     },
     usemin: {
-      html: ['dist/**/*.html'],
-      css: ['dist/css/**/*.css'],
+      html: ['<%= paths.dist %>/**/*.html'],
+      css: ['<%= paths.dist %>/css/**/*.css'],
       options: {
-        dirs: ['dist/**/*'],
-        basedir: 'dist'
+        dirs: ['<%= paths.dist %>/**/*'],
+        basedir: '<%= paths.dist %>'
       }
     },
     concat: {},
