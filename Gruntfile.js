@@ -149,7 +149,7 @@ module.exports = function (grunt) {
 
     // grunt-usemin
     useminPrepare: {
-      html: '<%= paths.app %>/index.html',
+      html: '<%= paths.dist %>/index.html',
       options: {
         dest: '<%= paths.dist %>'
       }
