@@ -177,12 +177,12 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('check', [
+  grunt.registerTask('check', 'Check HTML/JS syntax', [
     'jekyll:check',
     'jshint:check'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('build', 'Build for deployment', [
     'clean:dist',
     'jekyll:dist',
     'concurrent:dist',
@@ -194,7 +194,7 @@ module.exports = function (grunt) {
     'usemin'
   ]);
 
-  grunt.registerTask('server', function (target) {
+  grunt.registerTask('server', 'Build and preview on built-in server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
